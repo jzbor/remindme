@@ -18,3 +18,6 @@ client = ["dep:colored", "dep:reqwest", "dep:tokio"]
 server = ["dep:rocket"]
 default = ["client", "server"]
 
+[profile.release]
+opt-level = "z"
+lto = true
