@@ -162,6 +162,12 @@ dependencies = [
 
 [[package]]
 name = "base64"
+version = "0.13.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9e1b586273c5702936fe7b7d6896644d8be71e6314cfe09d3167c95f712589e8"
+
+[[package]]
+name = "base64"
 version = "0.22.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "72b3254f16251a8381aa12e40e3c4d2f0199f8c6508fbecb9d91f575e0fbb8c6"
@@ -1373,9 +1379,11 @@ dependencies = [
  "colored",
  "reqwest",
  "rocket",
+ "rocket-basicauth",
  "serde",
  "thiserror 2.0.11",
  "tokio",
+ "toml",
 ]
 
 [[package]]
@@ -1384,7 +1392,7 @@ version = "0.12.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "43e734407157c3c2034e0258f5e4473ddb361b1e85f95a66690d67264d7cd1da"
 dependencies = [
- "base64",
+ "base64 0.22.1",
  "bytes",
  "futures-core",
  "futures-util",
@@ -1472,6 +1480,17 @@ dependencies = [
  "ubyte",
  "version_check",
  "yansi",
+]
+
+[[package]]
+name = "rocket-basicauth"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a28f37ecfc0824ebd4a4a9b9486770fb7a8bef5c703881f4e32dc7cc9ce8cd9f"
+dependencies = [
+ "base64 0.13.1",
+ "log",
+ "rocket",
 ]
 
 [[package]]

@@ -4,6 +4,7 @@ use client::Client;
 #[cfg(feature = "client")]
 use error::*;
 
+mod config;
 mod error;
 mod reminder;
 mod time;

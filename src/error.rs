@@ -38,6 +38,15 @@ pub enum RemindmeError {
     #[error("command exited with status {0}")]
     CommandExit(i32),
 
+    #[cfg(feature = "server")]
+    #[error("config file not found")]
+    ConfigNotFound(),
+
+    #[cfg(feature = "server")]
+    #[error("config error - {0}")]
+    Config(#[from] toml::de::Error),
+
+
     #[error("io error - {0}")]
     IO(#[from] std::io::Error),
 }

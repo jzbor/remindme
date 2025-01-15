@@ -13,6 +13,8 @@ use crate::time::*;
 use crate::error::*;
 
 const BASE_URL: &str = "http://localhost:8000";
+const TEST_USER: &str = "test";
+const TEST_PASS: &str = "test";
 
 pub struct Client {
     reqwest: reqwest::Client,
@@ -35,6 +37,7 @@ impl Client {
     async fn post_new(&self, time: Time, message: String) -> RemindmeResult<Reminder>{
         let request = ReminderRequest::new(time, message);
         let response = self.reqwest.post(format!("{}/reminders/new", BASE_URL))
+            .basic_auth(TEST_USER, Some(TEST_PASS))
             .json(&request)
             .send()
             .await?
@@ -45,6 +48,7 @@ impl Client {
 
     async fn post_ack(&self, id: ReminderId) -> RemindmeResult<StatusCode> {
         let response = self.reqwest.post(format!("{}/reminders/{}/ack", BASE_URL, id))
+            .basic_auth(TEST_USER, Some(TEST_PASS))
             .send()
             .await?
             .status();
@@ -53,6 +57,7 @@ impl Client {
 
     async fn get_all(&self) -> RemindmeResult<Vec<Reminder>>{
         let response = self.reqwest.get(format!("{}/reminders/all", BASE_URL))
+            .basic_auth(TEST_USER, Some(TEST_PASS))
             .send()
             .await?
             .json()
@@ -62,6 +67,7 @@ impl Client {
 
     async fn get_pending(&self) -> RemindmeResult<Vec<Reminder>>{
         let response = self.reqwest.get(format!("{}/reminders/pending", BASE_URL))
+            .basic_auth(TEST_USER, Some(TEST_PASS))
             .send()
             .await?
             .json()
