@@ -1,0 +1,20 @@
+[package]
+name = "remindme"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+chrono = "0.4.39"
+clap = { version = "4.5.26", features = ["derive"] }
+colored = { version = "3.0.0", optional = true }
+reqwest = { version = "0.12.12", default-features = false, features = ["rustls-tls", "json"], optional = true }
+rocket = { version = "0.5.1", features = ["json"], optional = true }
+serde = { version = "1.0.217", features = ["derive"] }
+thiserror = "2.0.11"
+tokio = { version = "1.43.0", optional = true }
+
+[features]
+client = ["dep:colored", "dep:reqwest", "dep:tokio"]
+server = ["dep:rocket"]
+default = ["client", "server"]
+
